@@ -1,3 +1,9 @@
+#!/bin/bash
+# File: bash-powerline.sh
+# Author: Vito Louis Sansevero <vito.sansevero@gmail.com>
+# Date: 07.11.2017
+# Last Modified Date: 07.11.2017
+# Last Modified By: Vito Louis Sansevero <vito.sansevero@gmail.com>
 #!/usr/bin/env bash
 
 __powerline() {
@@ -156,7 +162,7 @@ __powerline() {
             # promptvars is disabled. Avoid creating unnecessary env var.
             PS1+="$BG_VIOLET$FG_BASE3$(__virtualenv)$RESET"
         fi
-        PS1+="$BG_BASE1$FG_BASE3 \w $RESET"
+        PS1+="$BG_BASE1$FG_BASE3$(date +%k:%M) \w $RESET"
         # Bash by default expands the content of PS1 unless promptvars is disabled.
         # We must use another layer of reference to prevent expanding any user
         # provided strings, which would cause security issues.
