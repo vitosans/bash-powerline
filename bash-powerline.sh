@@ -43,15 +43,18 @@ __powerline() {
         readonly FG_ORANGE="\[$(tput setaf 9)\]"
         readonly FG_RED="\[$(tput setaf 1)\]"
         readonly FG_MAGENTA="\[\033[0;35m\]"
+        readonly FG_GREY="\[$(tput setaf 240)\]"
         readonly FG_VIOLET="\[$(tput setaf 13)\]"
         readonly FG_BLUE="\[$(tput setaf 4)\]"
         readonly FG_CYAN="\[$(tput setaf 6)\]"
         readonly FG_GREEN="\[$(tput setaf 2)\]"
+        readonly FG_BLACK="\[$(tput setaf 232)\]"
 
         readonly BG_YELLOW="\[$(tput setab 3)\]"
         readonly BG_ORANGE="\[$(tput setab 9)\]"
         readonly BG_RED="\[$(tput setab 1)\]"
         readonly BG_MAGENTA="\[$(tput setab 5)\]"
+        readonly BG_GREY="\[$(tput setab 240)\]"
         readonly BG_VIOLET="\[$(tput setab 13)\]"
         readonly BG_BLUE="\[$(tput setab 4)\]"
         readonly BG_CYAN="\[$(tput setab 6)\]"
@@ -167,8 +170,8 @@ __powerline() {
               local EXIT_RESULT=1
           fi
           PS1="$BG_BASE2$SEPARATOR_THIN$BG_BASE2$FG_BASE02\t $FG_BASE2$BG_BASE02$SEPARATOR$RESET" #time
-          PS1+="$BG_BASE02$FG_BASE3 \u $FG_BASE02$BG_MAGENTA$SEPARATOR$RESET" # user
-          PS1+="$BG_MAGENTA$FG_YELLOW \H $FG_MAGENTA$BG_YELLOW$SEPARATOR$RESET" # host
+          PS1+="$BG_BASE02$FG_BASE3 \u $FG_BASE02$BG_GREY$SEPARATOR$RESET" # user
+          PS1+="$BG_GREY$FG_BLACK \H $FG_GREY$BG_YELLOW$SEPARATOR$RESET" # host
           PS1+="$BG_YELLOW$FG_BASE02 \W $RESET" # current directory
 
           if [ -n "$GITINFO" ]; then
