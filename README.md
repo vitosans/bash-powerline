@@ -3,7 +3,7 @@
 Powerline for Bash in pure Bash script. 
 
 ![bash-powerline](https://github.com/vitosans/bash-powerline/raw/master/screenshots/fancy-powerline.png)
-![bash-powerline](https://github.com/vitosans/bash-powerline/raw/master/screenshots/fancy-powerline.png)
+
 
 ## Features
 
