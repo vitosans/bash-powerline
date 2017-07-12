@@ -2,8 +2,8 @@
 
 Powerline for Bash in pure Bash script. 
 
-![bash-powerline](https://raw.github.com/vito-sans/bash-powerline/master/screenshots/fancy-powerline.png)
-![bash-powerline](https://raw.github.com/vito-sans/bash-powerline/master/screenshots/solarized-dark-monaco.png)
+![bash-powerline](https://github.com/vitosans/bash-powerline/raw/master/screenshots/fancy-powerline.png)
+![bash-powerline](https://github.com/vitosans/bash-powerline/raw/master/screenshots/fancy-powerline.png)
 
 ## Features
 
