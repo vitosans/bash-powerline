@@ -4,58 +4,59 @@
 # Date: 07.11.2017
 # Last Modified Date: 07.11.2017
 # Last Modified By: Vito Louis Sansevero <vito.sansevero@gmail.com>
-#!/usr/bin/env bash
 
 __powerline() {
 
     # Unicode symbols
     readonly PS_SYMBOL_DARWIN=''
-    readonly PS_SYMBOL_LINUX='$'
+    readonly PS_SYMBOL_LINUX='\$'
     readonly PS_SYMBOL_OTHER='%'
-    readonly GIT_BRANCH_SYMBOL='⑂ '
-    readonly GIT_BRANCH_CHANGED_SYMBOL='+'
-    readonly GIT_NEED_PUSH_SYMBOL='⇡'
-    readonly GIT_NEED_PULL_SYMBOL='⇣'
+    readonly GIT_BRANCH_SYMBOL='  '
+    readonly GIT_BRANCH_CHANGED_SYMBOL='+ '
+    readonly GIT_NEED_PUSH_SYMBOL='⇡ '
+    readonly GIT_NEED_PULL_SYMBOL='⇣ '
+    readonly SEPARATOR=''
+    readonly SEPARATOR_THIN=''
     readonly PS_SYMBOL_PYTHON='ƨ'
 
     # Solarized colorscheme
     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-        readonly FG_BASE03="\[$(tput setaf 234)\]"
-        readonly FG_BASE02="\[$(tput setaf 235)\]"
-        readonly FG_BASE01="\[$(tput setaf 240)\]"
-        readonly FG_BASE00="\[$(tput setaf 241)\]"
-        readonly FG_BASE0="\[$(tput setaf 244)\]"
-        readonly FG_BASE1="\[$(tput setaf 245)\]"
-        readonly FG_BASE2="\[$(tput setaf 254)\]"
-        readonly FG_BASE3="\[$(tput setaf 230)\]"
+        readonly FG_BASE03="\[$(tput setaf 8)\]"
+        readonly FG_BASE02="\[$(tput setaf 0)\]"
+        readonly FG_BASE01="\[$(tput setaf 10)\]"
+        readonly FG_BASE00="\[$(tput setaf 11)\]"
+        readonly FG_BASE0="\[$(tput setaf 12)\]"
+        readonly FG_BASE1="\[$(tput setaf 14)\]"
+        readonly FG_BASE2="\[$(tput setaf 7)\]"
+        readonly FG_BASE3="\[$(tput setaf 15)\]"
 
-        readonly BG_BASE03="\[$(tput setab 234)\]"
-        readonly BG_BASE02="\[$(tput setab 235)\]"
-        readonly BG_BASE01="\[$(tput setab 240)\]"
-        readonly BG_BASE00="\[$(tput setab 241)\]"
-        readonly BG_BASE0="\[$(tput setab 244)\]"
-        readonly BG_BASE1="\[$(tput setab 245)\]"
-        readonly BG_BASE2="\[$(tput setab 254)\]"
-        readonly BG_BASE3="\[$(tput setab 230)\]"
+        readonly BG_BASE03="\[$(tput setab 8)\]"
+        readonly BG_BASE02="\[$(tput setab 0)\]"
+        readonly BG_BASE01="\[$(tput setab 10)\]"
+        readonly BG_BASE00="\[$(tput setab 11)\]"
+        readonly BG_BASE0="\[$(tput setab 12)\]"
+        readonly BG_BASE1="\[$(tput setab 14)\]"
+        readonly BG_BASE2="\[$(tput setab 7)\]"
+        readonly BG_BASE3="\[$(tput setab 15)\]"
 
-        readonly FG_YELLOW="\[$(tput setaf 136)\]"
-        readonly FG_ORANGE="\[$(tput setaf 166)\]"
-        readonly FG_RED="\[$(tput setaf 160)\]"
-        readonly FG_MAGENTA="\[$(tput setaf 125)\]"
-        readonly FG_VIOLET="\[$(tput setaf 61)\]"
-        readonly FG_BLUE="\[$(tput setaf 33)\]"
-        readonly FG_CYAN="\[$(tput setaf 37)\]"
-        readonly FG_GREEN="\[$(tput setaf 64)\]"
+        readonly FG_YELLOW="\[$(tput setaf 3)\]"
+        readonly FG_ORANGE="\[$(tput setaf 9)\]"
+        readonly FG_RED="\[$(tput setaf 1)\]"
+        readonly FG_MAGENTA="\[\033[0;35m\]"
+        readonly FG_VIOLET="\[$(tput setaf 13)\]"
+        readonly FG_BLUE="\[$(tput setaf 4)\]"
+        readonly FG_CYAN="\[$(tput setaf 6)\]"
+        readonly FG_GREEN="\[$(tput setaf 2)\]"
 
-        readonly BG_YELLOW="\[$(tput setab 136)\]"
-        readonly BG_ORANGE="\[$(tput setab 166)\]"
-        readonly BG_RED="\[$(tput setab 160)\]"
-        readonly BG_MAGENTA="\[$(tput setab 125)\]"
-        readonly BG_VIOLET="\[$(tput setab 61)\]"
-        readonly BG_BLUE="\[$(tput setab 33)\]"
-        readonly BG_CYAN="\[$(tput setab 37)\]"
-        readonly BG_GREEN="\[$(tput setab 64)\]"
-     else
+        readonly BG_YELLOW="\[$(tput setab 3)\]"
+        readonly BG_ORANGE="\[$(tput setab 9)\]"
+        readonly BG_RED="\[$(tput setab 1)\]"
+        readonly BG_MAGENTA="\[$(tput setab 5)\]"
+        readonly BG_VIOLET="\[$(tput setab 13)\]"
+        readonly BG_BLUE="\[$(tput setab 4)\]"
+        readonly BG_CYAN="\[$(tput setab 6)\]"
+        readonly BG_GREEN="\[$(tput setab 2)\]"
+    else
         readonly FG_BASE03="\[$(tput setaf 8)\]"
         readonly FG_BASE02="\[$(tput setaf 0)\]"
         readonly FG_BASE01="\[$(tput setaf 10)\]"
@@ -99,21 +100,19 @@ __powerline() {
     readonly BOLD="\[$(tput bold)\]"
 
     if [[ -z "$PS_SYMBOL" ]]; then
-      case "$(uname)" in
-          Darwin)
-              PS_SYMBOL=$PS_SYMBOL_DARWIN
-              ;;
-          Linux)
-              PS_SYMBOL=$PS_SYMBOL_LINUX
-              ;;
-          *)
-              PS_SYMBOL=$PS_SYMBOL_OTHER
-      esac
+        case "$(uname)" in
+            Darwin)
+                PS_SYMBOL=$PS_SYMBOL_DARWIN
+                ;;
+            Linux)
+                PS_SYMBOL=$PS_SYMBOL_LINUX
+                ;;
+            *)
+                PS_SYMBOL=$PS_SYMBOL_OTHER
+        esac
     fi
 
-    __git_info() { 
-        [ -x "$(which git)" ] || return    # git not found
-
+    __git_info() {
         local git_eng="env LANG=C git"   # force git output in English to make our work easier
         # get current branch name or short SHA1 hash for detached head
         local branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"
@@ -126,8 +125,8 @@ __powerline() {
 
         # how many commits local branch is ahead/behind of remote?
         local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
-        local aheadN="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-        local behindN="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
+        local aheadN="$(echo $stat | grep -o 'ahead [0-9]\+' | grep -o '[0-9]\+')"
+        local behindN="$(echo $stat | grep -o 'behind [0-9]\+' | grep -o '[0-9]\+')"
         [ -n "$aheadN" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$aheadN"
         [ -n "$behindN" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behindN"
 
@@ -136,47 +135,49 @@ __powerline() {
     }
 
     __virtualenv() {
-      if [ -z "${VIRTUAL_ENV}" ] ; then
-        return
-      else
-        local virtualenv="$(basename $VIRTUAL_ENV)"
-        printf "($PS_SYMBOL_PYTHON $virtualenv)"
-      fi
+        if [ -z "${VIRTUAL_ENV}" ] ; then
+            return
+        else
+            local virtualenv="$(basename $VIRTUAL_ENV)"
+            printf "($PS_SYMBOL_PYTHON $virtualenv)"
+        fi
     }
+          ps1() {
+          # Check the exit code of the previous command and display different
+          # colors in the prompt accordingly.•
+          if [ $? -eq 0 ]; then
+              local GITINFO=$(__git_info)
+              if [ -n "$GITINFO" ]; then
+                  local BG_EXIT="$FG_BLUE"
+              else
+                  local BG_EXIT="$FG_YELLOW"
+              fi
+              BG_EXIT+="$BG_GREEN$SEPARATOR$RESET$BG_GREEN"
+              local FG_EXIT="$FG_GREEN"
+              local EXIT_RESULT=0
+          else
+              local GITINFO=$(__git_info)
+              if [ -n "$GITINFO" ]; then
+                  local BG_EXIT="$FG_BLUE"
+              else
+                  local BG_EXIT="$FG_YELLOW"
+              fi
+              BG_EXIT+="$BG_RED$SEPARATOR$RESET$BG_RED"
+              local FG_EXIT="$FG_RED"
+              local EXIT_RESULT=1
+          fi
+          PS1="$BG_BASE2$SEPARATOR_THIN$BG_BASE2$FG_BASE02\t $FG_BASE2$BG_BASE02$SEPARATOR$RESET" #time
+          PS1+="$BG_BASE02$FG_BASE3 \u $FG_BASE02$BG_MAGENTA$SEPARATOR$RESET" # user
+          PS1+="$BG_MAGENTA$FG_YELLOW \H $FG_MAGENTA$BG_YELLOW$SEPARATOR$RESET" # host
+          PS1+="$BG_YELLOW$FG_BASE02 \W $RESET" # current directory
 
-    ps1() {
-        # Check the exit code of the previous command and display different
-        # colors in the prompt accordingly. 
-        if [ $? -eq 0 ]; then
-            local BG_EXIT="$BG_GREEN"
-        else
-            local BG_EXIT="$BG_RED"
-        fi
-
-        PS1=""
-        # the indirection is a security measure, explained below
-        if shopt -q promptvars; then
-            __powerline_virtualenv="$(__virtualenv)"
-            PS1+="$BG_VIOLET$FG_BASE3\${__powerline_virtualenv}$RESET"
-        else
-            # promptvars is disabled. Avoid creating unnecessary env var.
-            PS1+="$BG_VIOLET$FG_BASE3$(__virtualenv)$RESET"
-        fi
-        PS1+="$BG_BASE1$FG_BASE3$(date +%k:%M) \w $RESET"
-        # Bash by default expands the content of PS1 unless promptvars is disabled.
-        # We must use another layer of reference to prevent expanding any user
-        # provided strings, which would cause security issues.
-        # POC: https://github.com/njhartwell/pw3nage
-        # Related fix in git-bash: https://github.com/git/git/blob/9d77b0405ce6b471cb5ce3a904368fc25e55643d/contrib/completion/git-prompt.sh#L324
-        if shopt -q promptvars; then
-            __powerline_git_info="$(__git_info)"
-            PS1+="$BG_BLUE$FG_BASE3\${__powerline_git_info}$RESET"
-        else
-            # promptvars is disabled. Avoid creating unnecessary env var.
-            PS1+="$BG_BLUE$FG_BASE3$(__git_info)$RESET"
-        fi
-        PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL $RESET "
-    }
+          if [ -n "$GITINFO" ]; then
+              PS1+="$FG_YELLOW$BG_BLUE$SEPARATOR$RESET" # GIT Info
+              PS1+="$BG_BLUE$FG_BASE3$GITINFO$RESET" # GIT Info
+          fi
+          #PS1+="$BG_EXIT$FG_BASE3 \l $SEPARATOR_THIN $PS_SYMBOL$RESET$FG_EXIT$SEPARATOR$RESET " # current terminal plus $
+          PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL$RESET$FG_EXIT$SEPARATOR$RESET " # current terminal plus $
+      }
 
     PROMPT_COMMAND=ps1
 }
